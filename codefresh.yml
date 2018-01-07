@@ -16,11 +16,15 @@ steps:
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
     registry: dockerhub
 
-  PushingToDockerRegistry-LatestTag:
+  PushingToDockerRegistryLatestTag:
     title: Pushing to Docker Registry
     type: push
     candidate: '${{BuildingDockerImage}}'
     tag: 'latest'
+    when:
+      branch:
+        only:
+          - master
     registry: dockerhub
 
   RunningDeployScript:
