@@ -15,8 +15,9 @@ steps:
     working_directory: ${{CF_VOLUME_PATH}}
     commands:
       - /usr/local/bin/generate-certs
+      - echo $SSL_SUBJECT
     environment:
-      - SSL_SUBJECT="mydomain.com"
+      - SSL_SUBJECT=${{SSL_SUBJECT}}
 
   UseSSLCertificate:
     title: Uses the certificate created in previous step
@@ -24,10 +25,14 @@ steps:
     working_directory: ${{CF_VOLUME_PATH}}
     commands:
       - ls
-      - echo "This demonstrates how to use the certificates generated, in another step:\n"
-      - cat key.pem
-      - cat key.cst
+      - echo "This demonstrates how to use the generated certificate in another step:"
+      - echo "cert.pem file"
       - cat cert.pem
+      - echo "key.pem file"
+      - cat key.pem
+      - echo "key.csr file"
+      - cat key.csr
+
 
   PushingToDockerRegistry:
     title: Pushing to Docker Registry
