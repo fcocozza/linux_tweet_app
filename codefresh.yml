@@ -9,6 +9,25 @@ steps:
     dockerfile: Dockerfile
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
 
+  GenerateSSLCertificate:
+    title: Generates SSL Self-signed certificate
+    image: paulczar/omgwtfssl
+    working_directory: ${{CF_VOLUME_PATH}}
+    commands:
+      - /usr/local/bin/generate-certs
+    environment:
+      - SSL_SUBJECT="example.com"
+
+  UseSSLCertificate:
+    title: Uses the certificate created in previous step
+    image: alpine:latest
+    working_directory: ${{CF_VOLUME_PATH}}
+    commands:
+      - ls
+      - ls /
+      - pwd
+      - ls /codefresh/volume
+
   PushingToDockerRegistry:
     title: Pushing to Docker Registry
     type: push
@@ -26,16 +45,6 @@ steps:
         only:
           - master
     registry: dockerhub
-
-  GenerateSSLCertificate:
-    title: Generates SSL Self-signed certificate
-    image: paulczar/omgwtfssl
-    working_directory: ${{CF_VOLUME_PATH}}
-    commands:
-      - /usr/local/bin/generate-certs
-    environment:
-      - SSL_SUBJECT="example.com"
-
 
   RunningDeployScript:
     title: Running Deploy Script
