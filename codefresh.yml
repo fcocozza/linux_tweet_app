@@ -31,6 +31,9 @@ steps:
     title: Step Title
     description: Step description
     image: nginx:latest
+    commands:
+      - ls
+      - date
 
   RunningDeployScript:
     title: Running Deploy Script
