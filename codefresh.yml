@@ -27,10 +27,10 @@ steps:
           - master
     registry: dockerhub
 
-FreeStyleStep:
-  title: Step Title
-  description: Step description
-  image: nginx:latest
+  FreeStyleStep:
+    title: Step Title
+    description: Step description
+    image: nginx:latest
 
   RunningDeployScript:
     title: Running Deploy Script
