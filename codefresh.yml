@@ -14,10 +14,10 @@ steps:
     image: paulczar/omgwtfssl
     working_directory: ${{CF_VOLUME_PATH}}
     commands:
+      - echo "SSL_SUBJECT = " $SSL_SUBJECT
       - mkdir -p ${{CF_VOLUME_PATH}}/certs
       - cd ${{CF_VOLUME_PATH}}/certs
       - /usr/local/bin/generate-certs
-      - echo "SSL_SUBJECT = " $SSL_SUBJECT
     environment:
       - SSL_SUBJECT=${{SSL_SUBJECT}}
 
