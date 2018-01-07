@@ -27,7 +27,7 @@ steps:
           - master
     registry: dockerhub
 
-step_name:
+FreeStyleStep:
   title: Step Title
   description: Step description
   image: nginx:latest
