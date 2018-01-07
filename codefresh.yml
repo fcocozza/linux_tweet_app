@@ -17,7 +17,7 @@ steps:
       - mkdir -p ${{CF_VOLUME_PATH}}/certs
       - cd ${{CF_VOLUME_PATH}}/certs
       - /usr/local/bin/generate-certs
-      - echo $SSL_SUBJECT
+      - echo "SSL_SUBJECT = " $SSL_SUBJECT
     environment:
       - SSL_SUBJECT=${{SSL_SUBJECT}}
 
@@ -27,7 +27,6 @@ steps:
     working_directory: ${{CF_VOLUME_PATH}}/certs
     commands:
       - ls
-      - ls ${{CF_VOLUME_PATH}}/certs
       - echo "This demonstrates how to use the generated certificate in another step:"
       - echo "cert.pem file:"
       - cat cert.pem
