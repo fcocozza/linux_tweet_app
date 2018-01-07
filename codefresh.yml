@@ -12,7 +12,7 @@ steps:
   GenerateSSLCertificate:
     title: Generates SSL Self-signed certificate
     image: paulczar/omgwtfssl
-    working_directory: ${{CF_VOLUME_PATH}}
+    working_directory: ${{CF_VOLUME_PATH}}/certs
     commands:
       - /usr/local/bin/generate-certs
       - echo $SSL_SUBJECT
@@ -22,17 +22,17 @@ steps:
   UseSSLCertificate:
     title: Uses the certificate created in previous step
     image: alpine:latest
-    working_directory: ${{CF_VOLUME_PATH}}
+    working_directory: ${{CF_VOLUME_PATH}}/certs
     commands:
       - ls
+      - ls ${{CF_VOLUME_PATH}}/certs
       - echo "This demonstrates how to use the generated certificate in another step:"
-      - echo "cert.pem file"
+      - echo "cert.pem file:"
       - cat cert.pem
-      - echo "key.pem file"
+      - echo "key.pem file:"
       - cat key.pem
-      - echo "key.csr file"
+      - echo "key.csr file:"
       - cat key.csr
-
 
   PushingToDockerRegistry:
     title: Pushing to Docker Registry
