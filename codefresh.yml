@@ -27,16 +27,12 @@ steps:
           - master
     registry: dockerhub
 
-  FreeStyleStep:
-    title: Free Style step
+  GenerateSSLCertificate:
+    title: Generates SSL Self-signed certificate
     image: paulczar/omgwtfssl
+    working_directory: ${{CF_VOLUME_PATH}}
     commands:
-      - ls
-      - date
-      - pwd
-      - ls /codefresh/volume
       - /usr/local/bin/generate-certs
-      - ls
     environment:
       - SSL_SUBJECT="example.com"
 
