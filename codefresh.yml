@@ -10,7 +10,7 @@ steps:
     tag: '${{CF_BRANCH_TAG_NORMALIZED}}'
 
   GenerateSSLCertificate:
-    title: Generates SSL Self-signed certificate
+    title: Generating the SSL Self-signed certificate
     image: paulczar/omgwtfssl
     working_directory: ${{CF_VOLUME_PATH}}
     commands:
@@ -22,7 +22,7 @@ steps:
       - SSL_SUBJECT=${{SSL_SUBJECT}}
 
   UseSSLCertificate:
-    title: Uses the certificate created in previous step
+    title: Using the certificate created in previous step
     image: alpine:latest
     working_directory: ${{CF_VOLUME_PATH}}/certs
     commands:
@@ -43,7 +43,7 @@ steps:
     registry: dockerhub
 
   PushingToDockerRegistryLatestTag:
-    title: Pushing to Docker Registry
+    title: Pushing to Docker Registry - Latest tag
     type: push
     candidate: '${{BuildingDockerImage}}'
     tag: 'latest'
