@@ -58,7 +58,7 @@ steps:
     type: deploy
     kind: kubernetes
     # k8s cluster name
-    cluster: k8s-cluster-cf-tasks-fcocozza@codefresh-staging
+    cluster: cluster-1@codefresh-staging
     namespace: default
     when:
       branch:
